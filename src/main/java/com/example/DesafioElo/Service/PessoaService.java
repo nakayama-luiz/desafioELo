@@ -60,4 +60,18 @@ public class PessoaService {
     }
 
 
+    public void atualizaPessoa(Integer id, Pessoa pessoa){
+        Pessoa pessoaAtualizada = pessoaRepository.findById(id).get();
+
+        pessoaAtualizada.setTelefone(pessoa.getTelefone());
+        pessoaAtualizada.setNome(pessoa.getNome());
+        pessoaAtualizada.setCpf(pessoa.getCpf());
+        pessoaAtualizada.setDataDeNascimento(pessoa.getDataDeNascimento());
+        pessoaAtualizada.setEndereco(pessoa.getEndereco());
+
+        pessoaRepository.save(pessoaAtualizada);
+    }
+
+
+
 }

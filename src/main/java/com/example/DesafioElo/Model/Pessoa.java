@@ -29,7 +29,7 @@ public class Pessoa {
     @Column(name = "cpf", nullable = false, unique = true, precision = 11)
     private String cpf;
 
-    @Column(name = "telefone", nullable = false)
+    @Column(name = "telefone", nullable = false, precision = 11)
     private String telefone;
 
 
@@ -37,16 +37,6 @@ public class Pessoa {
     //@JoinColumn(name = "Idereco", nullable = false)
     private List<Endereco> endereco;
 
-    public boolean cpfValidado(String cpf){
-        CPFValidator cpfValidator = new CPFValidator();
-        try{
-            cpfValidator.assertValid(cpf);
-            return  true;
-        }catch (Exception error){
-            return false;
-
-        }
-    }
 
     public Integer getId() {
         return Id;

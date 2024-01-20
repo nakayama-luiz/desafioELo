@@ -22,7 +22,7 @@ public class PessoaControl {
         return pessoaService.getPessoasCount();
     }
 
-    @GetMapping("/getPessoasByName/{cpf}")
+    @GetMapping("/getPessoaByCpf/{cpf}")
     public Pessoa getPessoasByName(@PathVariable String cpf){
         return pessoaService.getPessoaByCpf(cpf);
     }
@@ -33,4 +33,13 @@ public class PessoaControl {
         pessoaService.createPerson(pessoa);
     }
 
+    @DeleteMapping("/removePessoa")
+    public void removePessoa(@RequestBody Pessoa pessoa){
+        pessoaService.erradicarPessoa(pessoa);
+    }
+
+    @PutMapping("updatePessoa/{id}")
+    public void updatePessoa(@PathVariable Integer id, @RequestBody Pessoa pessoa){
+        pessoaService.atualizaPessoa(id, pessoa);
+    }
 }
