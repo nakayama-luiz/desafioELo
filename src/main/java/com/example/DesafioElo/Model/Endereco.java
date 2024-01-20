@@ -12,10 +12,10 @@ public class Endereco {
     @Column(name = "Idereco")
     private Integer Id;
 
-    @Column(name = "cep")
+    @Column(name = "cep", nullable = false)
     private Integer Cep;
 
-    @Column(name = "UF", length = 2)
+    @Column(name = "UF", length = 2, nullable = false)
     private String UF;
 
     @ManyToOne

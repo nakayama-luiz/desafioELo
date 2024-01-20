@@ -1,14 +1,18 @@
 package com.example.DesafioElo;
 
-import com.example.DesafioElo.Control.PessoaControl;
 import com.example.DesafioElo.Model.Pessoa;
-import com.example.DesafioElo.Model.Vaildador;
-import com.example.DesafioElo.Service.PessoaService;
+import com.example.DesafioElo.Model.Validador;
 import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 
 @SpringBootTest
 class DesafioEloApplicationTests {
@@ -32,24 +36,44 @@ class DesafioEloApplicationTests {
 
 	@Test //valida correto
 	void TesteCpfValidatorCorreto(){
-		Vaildador vaildador = new Vaildador();
+		Validador validador = new Validador();
 
 		String cpf = "08861472982";
 
-		Assertions.assertTrue(vaildador.cpfValidado(cpf));
+		Assertions.assertTrue(validador.cpfValidado(cpf));
 	}
 
 
-	@Test //valida correto
+	@Test //valida falso
 	void TesteCpfValidatorFalso(){
-		Vaildador vaildador = new Vaildador();
+		Validador validador = new Validador();
 
 		String cpf = "099614729";
 
-		Assertions.assertFalse(vaildador.cpfValidado(cpf));
+		Assertions.assertFalse(validador.cpfValidado(cpf));
 	}
 
 
+	@Test
+	void ValidarQuantidadeDeCaracteresDoTelefoneVerdadeiro(){
+		Validador validador = new Validador();
+		String telefone =  "44998435720";
+		Assertions.assertTrue(validador.TelefoneLimit(telefone));
+	}
 
+
+	@Test
+	void ValidarData(){
+		Validador validador = new Validador();
+		LocalDate.parse("2025-06-02");
+		Date date = new Date();
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		dateFormat.format(date);
+
+//			date=dateFormat.parse("2025-06-02");
+
+			Assertions.assertFalse(validador.ValidaData(LocalDate.parse("2025-06-02")));
+
+	}
 
 }

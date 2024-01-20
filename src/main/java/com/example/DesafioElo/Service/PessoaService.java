@@ -1,6 +1,7 @@
 package com.example.DesafioElo.Service;
 
 import com.example.DesafioElo.Model.Pessoa;
+import com.example.DesafioElo.Model.Validador;
 import com.example.DesafioElo.Repository.EnderecoRepository;
 import com.example.DesafioElo.Repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,21 @@ public class PessoaService {
 
 
     public void createPerson(Pessoa pessoa){
+        Validador validador = new Validador();
         try{
-            System.out.println(pessoa.getDataDeNascimento());
+            if(!(validador.cpfValidado(pessoa.getCpf()))){
+                throw new Exception("CPF inválido.");
+            }
+
+            if(!(validador.ValidaData(pessoa.getDataDeNascimento()))){
+                throw new Exception("A Data não pode ser posterior ao dia de hoje.");
+            }
+
+
+            if(!(validador.TelefoneLimit(pessoa.getTelefone()))){
+                throw new Exception("O telefone deve ter 11 caracteres.");
+            }
+
             pessoaRepository.save(pessoa);
 
         }catch (Exception e){
@@ -61,15 +75,41 @@ public class PessoaService {
 
 
     public void atualizaPessoa(Integer id, Pessoa pessoa){
-        Pessoa pessoaAtualizada = pessoaRepository.findById(id).get();
+        try{
+            Validador validador=new Validador();
 
-        pessoaAtualizada.setTelefone(pessoa.getTelefone());
-        pessoaAtualizada.setNome(pessoa.getNome());
-        pessoaAtualizada.setCpf(pessoa.getCpf());
-        pessoaAtualizada.setDataDeNascimento(pessoa.getDataDeNascimento());
-        pessoaAtualizada.setEndereco(pessoa.getEndereco());
 
-        pessoaRepository.save(pessoaAtualizada);
+            if(!(validador.cpfValidado(pessoa.getCpf()))){
+                throw new Exception("CPF inválido.");
+            }
+
+            if(!(validador.ValidaData(pessoa.getDataDeNascimento()))){
+                throw new Exception("A Data não pode ser posterior ao dia de hoje.");
+            }
+
+
+            if(!(validador.TelefoneLimit(pessoa.getTelefone()))){
+                throw new Exception("O telefone deve ter 11 caracteres.");
+            }
+
+            Pessoa pessoaAtualizada = pessoaRepository.findById(id).get();
+
+            pessoaAtualizada.setTelefone(pessoa.getTelefone());
+            pessoaAtualizada.setNome(pessoa.getNome());
+            pessoaAtualizada.setCpf(pessoa.getCpf());
+            pessoaAtualizada.setDataDeNascimento(pessoa.getDataDeNascimento());
+            pessoaAtualizada.setEndereco(pessoa.getEndereco());
+
+            pessoaRepository.save(pessoaAtualizada);
+
+
+        }catch (Exception e){
+            System.out.println(e);
+        }
+
+
+
+
     }
 
 
