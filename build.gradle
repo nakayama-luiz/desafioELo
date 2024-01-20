@@ -20,6 +20,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	runtimeOnly 'org.postgresql:postgresql'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	// https://mvnrepository.com/artifact/br.com.caelum.stella/caelum-stella-core
+	implementation group: 'br.com.caelum.stella', name: 'caelum-stella-core', version: '2.1.2'
+
 }
 
 tasks.named('test') {
