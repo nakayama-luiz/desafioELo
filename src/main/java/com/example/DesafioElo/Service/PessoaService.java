@@ -3,17 +3,22 @@ package com.example.DesafioElo.Service;
 import com.example.DesafioElo.Model.Pessoa;
 import com.example.DesafioElo.Repository.EnderecoRepository;
 import com.example.DesafioElo.Repository.PessoaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class PessoaService {
 
 
-    private PessoaRepository pessoaRepository;
-    private EnderecoRepository enderecoRepository;
+    private final PessoaRepository pessoaRepository;
+    private final EnderecoRepository enderecoRepository;
 
+    @Autowired
     public PessoaService(PessoaRepository pessoaRepository, EnderecoRepository enderecoRepository) {
         this.pessoaRepository = pessoaRepository;
         this.enderecoRepository = enderecoRepository;
@@ -22,6 +27,7 @@ public class PessoaService {
 
     public void createPerson(Pessoa pessoa){
         try{
+            System.out.println(pessoa.getDataDeNascimento());
             pessoaRepository.save(pessoa);
 
         }catch (Exception e){
@@ -42,7 +48,16 @@ public class PessoaService {
         return pessoaRepository.findById(id);
 
     }
+//    public List<Pessoa> getPessoaByName(String nome){
+//        return pessoaRepository.findAllByNome(nome);
+//    }
+    public Pessoa getPessoaByCpf(String cpf){
+        return pessoaRepository.findByCpf(cpf);
+    }
 
+    public long getPessoasCount(){
+        return pessoaRepository.count();
+    }
 
 
 }

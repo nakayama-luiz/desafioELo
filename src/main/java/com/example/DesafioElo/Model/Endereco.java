@@ -19,7 +19,7 @@ public class Endereco {
     private String UF;
 
     @ManyToOne
-    @JoinColumn(name = "Id_pessoa", nullable = false)
+    @JoinColumn(name = "Id_pessoa", nullable = true)
     private Pessoa pessoa;
 
     @Column(name = "logradouro", nullable = false)
@@ -53,5 +53,37 @@ public class Endereco {
 
     public void setUF(String UF) {
         this.UF = UF;
+    }
+
+    public String getLogradouro() {
+        return logradouro;
+    }
+
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 }

@@ -1,8 +1,12 @@
 package com.example.DesafioElo.Model;
 
+
 import br.com.caelum.stella.validation.CPFValidator;
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -16,20 +20,20 @@ public class Pessoa {
     private Integer Id;
 
     @Column(name = "nome", nullable = false)
-    private String Nome;
+    private String nome;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "DataDeNascimento", nullable = false)
-    private Date DataDeNascimento;
+    private LocalDate DataDeNascimento;
 
-    @Column(name = "Cpf", nullable = false, unique = true, precision = 11)
-    private String Cpf;
+    @Column(name = "cpf", nullable = false, unique = true, precision = 11)
+    private String cpf;
 
-    @Column(name = "Telefone", nullable = false)
-    private String Telefone;
+    @Column(name = "telefone", nullable = false)
+    private String telefone;
 
 
-    @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "pessoa")
     //@JoinColumn(name = "Idereco", nullable = false)
     private List<Endereco> endereco;
 
@@ -53,35 +57,44 @@ public class Pessoa {
     }
 
     public String getNome() {
-        return Nome;
+        return nome;
     }
 
     public void setNome(String nome) {
-        Nome = nome;
-    }
-
-    public Date getDataDeNascimento() {
-        return DataDeNascimento;
-    }
-
-    public void setDataDeNascimento(Date dataDeNascimento) {
-        DataDeNascimento = dataDeNascimento;
+        this.nome = nome;
     }
 
     public String getCpf() {
-        return Cpf;
+        return cpf;
     }
 
     public void setCpf(String cpf) {
-        Cpf = cpf;
+        this.cpf = cpf;
     }
 
     public String getTelefone() {
-        return Telefone;
+        return telefone;
     }
 
     public void setTelefone(String telefone) {
-        Telefone = telefone;
+        this.telefone = telefone;
+    }
+
+//    public Date getDataDeNascimento() {
+//        return DataDeNascimento;
+//    }
+//
+//    public void setDataDeNascimento(Date dataDeNascimento) {
+//        DataDeNascimento = dataDeNascimento;
+//    }
+
+
+    public LocalDate getDataDeNascimento() {
+        return DataDeNascimento;
+    }
+
+    public void setDataDeNascimento(LocalDate dataDeNascimento) {
+        DataDeNascimento = dataDeNascimento;
     }
 
     public List<Endereco> getEndereco() {

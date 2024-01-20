@@ -6,10 +6,16 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface PessoaRepository extends JpaRepository<Pessoa, Integer> {
+    Pessoa findByCpf(String Cpf);
 
-    List<Pessoa> pessoasPorNome(String nome);
 
-    List<Pessoa> pessoaPelo(String cpf);
+
+
+//    List<Pessoa> findAllByNome(String nome);
+
+//    List<Pessoa> findByCpf(String Cpf);
+
+//    Integer countAll();
 
 
 }
