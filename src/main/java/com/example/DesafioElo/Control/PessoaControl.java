@@ -42,4 +42,10 @@ public class PessoaControl {
     public void updatePessoa(@PathVariable Integer id, @RequestBody Pessoa pessoa){
         pessoaService.atualizaPessoa(id, pessoa);
     }
+
+    @GetMapping("/PesquisarPessoasEmPaginas")
+    public List<Pessoa> pessoaList(@RequestParam(required = false) String Cpf,
+                                   @RequestParam(required = false) String Nome){
+        return pessoaService.PesquisaPaginadaPessoa(Cpf,Nome);
+    }
 }

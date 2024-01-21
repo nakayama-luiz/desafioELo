@@ -5,6 +5,8 @@ import com.example.DesafioElo.Model.Validador;
 import com.example.DesafioElo.Repository.EnderecoRepository;
 import com.example.DesafioElo.Repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
@@ -109,6 +111,13 @@ public class PessoaService {
 
 
 
+
+    }
+
+    public List<Pessoa> PesquisaPaginadaPessoa(String cpf, String nome){
+        Pageable pageable = PageRequest.of(0, 2);
+
+        return pessoaRepository.findByCpfAndAndNome(cpf, nome, pageable);
 
     }
 
