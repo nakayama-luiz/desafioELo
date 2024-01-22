@@ -13,6 +13,9 @@ import java.util.List;
 @Entity
 @Table(name = "pessoa")
 public class Pessoa {
+
+
+
     @Id
     @Column(name = "Id_pessoa",nullable = false,unique = true)
     @SequenceGenerator(name = "seq_pessoa")

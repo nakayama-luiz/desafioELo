@@ -7,10 +7,11 @@ import com.example.DesafioElo.Repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import jakarta.persistence.criteria.Predicate;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,19 +32,21 @@ public class PessoaService {
     public void createPerson(Pessoa pessoa){
         Validador validador = new Validador();
         try{
+
             if(!(validador.cpfValidado(pessoa.getCpf()))){
                 throw new Exception("CPF inválido.");
             }
+            System.out.println("data?");
 
             if(!(validador.ValidaData(pessoa.getDataDeNascimento()))){
                 throw new Exception("A Data não pode ser posterior ao dia de hoje.");
             }
+            System.out.println("telefone??");
 
 
             if(!(validador.TelefoneLimit(pessoa.getTelefone()))){
                 throw new Exception("O telefone deve ter 11 caracteres.");
             }
-
             pessoaRepository.save(pessoa);
 
         }catch (Exception e){
@@ -111,14 +114,23 @@ public class PessoaService {
 
 
 
-
     }
 
     public List<Pessoa> PesquisaPaginadaPessoa(String cpf, String nome){
-        Pageable pageable = PageRequest.of(0, 2);
-
-        return pessoaRepository.findByCpfAndAndNome(cpf, nome, pageable);
-
+        Pageable pageable = PageRequest.of(0, 10);
+        System.out.println(cpf+"    "+nome);
+        List<Pessoa> pessoaList = pessoaRepository.findAllByCpfContainingOrNomeContainingIgnoreCase(cpf, nome, pageable);
+        for(Pessoa pessoa : pessoaList){
+            String pessoaTelefoneAtual = pessoa.getTelefone();
+            String mascaraTelefone = String.format("(%s) %s-%s",
+                    pessoaTelefoneAtual.substring(0,2),
+                    pessoaTelefoneAtual.substring(2,7),
+                    pessoaTelefoneAtual.substring(7)
+            );
+            pessoa.setTelefone(mascaraTelefone);
+        }
+//        return pessoaRepository.findAllByCpfContainingOrNomeContainingIgnoreCase(cpf, nome, pageable);
+        return pessoaList;
     }
 
 

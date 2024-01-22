@@ -9,7 +9,7 @@ public class Endereco {
     @Id
     @SequenceGenerator(name = "seq_endereco")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "Idereco")
+    @Column(name = "Idereco", nullable = false)
     private Integer Id;
 
     @Column(name = "cep", nullable = false)
@@ -19,7 +19,7 @@ public class Endereco {
     private String UF;
 
     @ManyToOne
-    @JoinColumn(name = "Id_pessoa", nullable = true)
+    @JoinColumn(name = "Id_pessoa", nullable = false)
     private Pessoa pessoa;
 
     @Column(name = "logradouro", nullable = false)
