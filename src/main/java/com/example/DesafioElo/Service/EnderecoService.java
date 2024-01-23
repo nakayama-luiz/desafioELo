@@ -17,4 +17,9 @@ public class EnderecoService {
     public void addAdress(Endereco endereco){
         enderecoRepository.save(endereco);
     }
+
+    public long findAlladreses(){
+        return enderecoRepository.count();
+    }
+
 }

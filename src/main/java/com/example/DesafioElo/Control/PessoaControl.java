@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class PessoaControl {
     private final PessoaService pessoaService;
 
@@ -17,7 +18,7 @@ public class PessoaControl {
         this.pessoaService = pessoaService;
     }
 
-    @GetMapping("/compras")
+    @GetMapping("/countPeople")
     public long countAllById(){
         return pessoaService.getPessoasCount();
     }
