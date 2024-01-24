@@ -2,6 +2,8 @@ package com.example.DesafioElo.Model;
 
 
 import br.com.caelum.stella.validation.CPFValidator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -13,8 +15,6 @@ import java.util.List;
 @Entity
 @Table(name = "pessoa")
 public class Pessoa {
-
-
 
     @Id
     @Column(name = "Id_pessoa",nullable = false,unique = true)
@@ -37,6 +37,7 @@ public class Pessoa {
 
 
     @OneToMany(mappedBy = "pessoa")
+    @JsonManagedReference
     //@JoinColumn(name = "Idereco", nullable = false)
     private List<Endereco> endereco;
 

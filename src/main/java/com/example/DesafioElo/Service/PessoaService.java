@@ -7,11 +7,8 @@ import com.example.DesafioElo.Repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-import jakarta.persistence.criteria.Predicate;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,6 +36,7 @@ public class PessoaService {
             System.out.println("data?");
 
             if(!(validador.ValidaData(pessoa.getDataDeNascimento()))){
+                System.out.println(pessoa.getDataDeNascimento());
                 throw new Exception("A Data não pode ser posterior ao dia de hoje.");
             }
             System.out.println("telefone??");
@@ -52,6 +50,7 @@ public class PessoaService {
         }catch (Exception e){
             System.out.println(e);
         }
+
     }
 
     public void erradicarPessoa(Pessoa pessoa){

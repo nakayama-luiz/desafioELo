@@ -1,9 +1,11 @@
-export interface Endereco{
-  nome: string;
-  cpf: string;
-  telefone: string;
-  dataDeNascimento: string;
-  endereco: Endereco
+import {Pessoa} from "./Pessoa";
 
+export interface Endereco{
+  logradouro: string;
+  cidade: string;
+  numero: string;
+  cep: number;
+  uf: string;
+  pessoa: Pessoa;
 
 }

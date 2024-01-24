@@ -30,8 +30,8 @@ public class PessoaControl {
 
     @PostMapping("/addPessoa")
     public void addPessoa(@RequestBody Pessoa pessoa){
-        System.out.println(pessoa.getDataDeNascimento());
         pessoaService.createPerson(pessoa);
+
     }
 
     @DeleteMapping("/removePessoa")

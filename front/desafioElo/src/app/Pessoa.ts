@@ -7,6 +7,7 @@ export interface Pessoa{
   telefone: string;
   dataDeNascimento: string;
   endereco: Endereco[];
+  id: number
 
 
 }

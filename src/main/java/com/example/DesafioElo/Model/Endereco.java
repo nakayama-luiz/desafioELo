@@ -1,5 +1,6 @@
 package com.example.DesafioElo.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -20,6 +21,7 @@ public class Endereco {
 
     @ManyToOne
     @JoinColumn(name = "Id_pessoa", nullable = false)
+    @JsonBackReference
     private Pessoa pessoa;
 
     @Column(name = "logradouro", nullable = false)
