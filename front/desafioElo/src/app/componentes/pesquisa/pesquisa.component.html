@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pesquisa</title>
+</head>
+<body>
+<div class="center">
+    <h2>PESQUISA</h2>
+</div>
+<hr>
+<div class="row">
+    <div class="col-md-5  mb-2">
+        <div class="form ">
+            <label>Nome</label>
+            <input style="width: 50%" type="text" class="form-control" id="" required [(ngModel)]="nome">
+            <!--        <label for="floatingInput">Email address</label>-->
+        </div>
+    </div>
+    <div class="col-md-5  mb-2">
+        <div class="form ">
+            <label>CPF</label>
+            <input style="width: 50%" type="text" class="form-control" id="" required [(ngModel)]="cpf">
+            <!--        <label for="floatingInput">Email address</label>-->
+        </div>
+    </div>
+    <div class="col-md-2  mb-2">
+        <label></label>
+        <div class="form center-">
+            <button class="btn btn-primary botao-estilo" type="submit" (click)="pesquisaComFiltro()" >PESQUISAR</button>
+
+            <!--        <label for="floatingInput">Email address</label>-->
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-12  mb-2">
+            <label></label>
+            <div class="center" *ngFor="let pessoa of listPessoa; index as i">
+                <table >
+                    <tr >
+                        <th>nome</th>
+                        <th>cpf</th>
+                        <th>telefone</th>
+                        <th>data de nascimento</th>
+                    </tr>
+                    <tr>
+                        <td>{{listPessoa.at(i).nome}}</td>
+                        <td>{{listPessoa.at(i).cpf}}</td>
+                        <td>{{listPessoa.at(i).telefone}}</td>
+                        <td>{{listPessoa.at(i).dataDeNascimento}}</td>
+                    </tr>
+                </table>
+                <!--        <label for="floatingInput">Email address</label>-->
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>cadastro unico</title>
+</head>
+<body>
+  <p>cadastro-unico works!</p>
+  <div class="row">
+    <h2>Pessoa</h2>
+
+    <div class="col-md-6 mb-2">
+      <div class="form mb-2">
+        <label>Nome</label>
+        <input type="text" class="form-control" id="" placeholder="" required [(ngModel)]="pessoa.nome">
+      </div>
+    </div>
+    <div class="col-md-6 mb-2">
+      <div class="form ">
+        <label>CPF</label>
+        <input style="width: 50%" type="text" class="form-control" id="" required [(ngModel)]="pessoa.cpf">
+      </div>
+    </div>
+  </div>
+
+<!--          <input type="text" class="input " placeholder="Nome">-->
+  <div class="row">
+
+    <div class="col-md-6  mb-2">
+      <div class="form ">
+        <label>Telefone</label>
+        <input type="text" class="form-control" id="" placeholder="" required [(ngModel)]="pessoa.telefone">
+
+        <!--        <label for="floatingInput">Email address</label>-->
+      </div>
+
+      <!--      <input type="text" class="input" placeholder="CPF">-->
+    </div>
+    <div class="col-md-6  mb-2">
+      <div class="form ">
+        <label>Data de Nascimento</label>
+        <input style="width: 50%" type="date" class="form-control" id="" required [(ngModel)]="pessoa.dataDeNascimento">
+        <!--        <label for="floatingInput">Email address</label>-->
+      </div>
+    </div>
+
+
+  </div>
+  <div class="row">
+    <h2>Endereço</h2>
+
+  </div>
+<div class="row">
+  <div class="col-md-5  mb-2">
+    <div class="form ">
+      <label>CEP</label>
+      <input style="width: 50%" type="text" class="form-control" id="CEP" placeholder="" required [(ngModel)]="endereco.cep" (change)="onChangeCEP()">
+      <!--        <label for="floatingInput">Email address</label>-->
+    </div>
+  </div>
+  <div class="col-md-5  mb-2">
+    <div class="form ">
+      <label>Número</label>
+      <input style="width: 50%" type="text" class="form-control" id="numero" required placeholder="número" [(ngModel)]="endereco.numero">
+      <!--        <label for="floatingInput">Email address</label>-->
+    </div>
+  </div>
+
+  <div class="col-md-2  mb-2">
+    <div class="form ">
+      <label>UF</label>
+      <select class="form-select">
+        <option>PR</option >
+      </select>
+<!--      <input style="width: 50%" type="number" class="form-control" id="" required placeholder="número">-->
+      <!--        <label for="floatingInput">Email address</label>-->
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6  mb-2">
+    <div class="form ">
+      <label>Logradouro</label>
+      <input type="text" class="form-control" id="logradouro" [(ngModel)]="endereco.logradouro" required>
+      <!--        <label for="floatingInput">Email address</label>-->
+    </div>
+    <!--      <input type="text" class="input" placeholder="CPF">-->
+  </div>
+  <div class="col-md-6  mb-2">
+    <div class="form ">
+      <label>Cidade</label>
+      <input type="text" class="form-control" id="" [(ngModel)]="endereco.cidade" required>
+      <!--        <label for="floatingInput">Email address</label>-->
+    </div>
+    <!--      <input type="text" class="input" placeholder="CPF">-->
+  </div>
+
+</div>
+<div class="row">
+
+</div>
+  <div class="col-md-12  mb-2">
+    <div class="form botao-estilo">
+<!--      <label>Cidade</label>-->
+      <br>
+      <button class="btn btn-primary botao-estilo" type="submit" (click)="CreatePessoa()">Gravar</button>
+
+
+      <!--      <input type="button" class="form-control" id="" placeholder="">-->
+      <!--        <label for="floatingInput">Email address</label>-->
+    </div>
+    <!--      <input type="text" class="input" placeholder="CPF">-->
+  </div>
+</body>
+</html>
